@@ -23,6 +23,9 @@ public class Label {
         this.name = name;
     }
 
+    public Label() {
+    }
+
     public long getId() {
         return id;
     }

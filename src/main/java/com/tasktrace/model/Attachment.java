@@ -23,6 +23,9 @@ public class Attachment {
         this.name = name;
     }
 
+    public Attachment() {
+    }
+
     public long getId() {
         return id;
     }

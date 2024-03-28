@@ -38,3 +38,11 @@ CREATE TABLE IF NOT EXISTS tasks_labels (
     FOREIGN KEY(task_id) REFERENCES tasks(task_id),
     FOREIGN KEY(label_id) REFERENCES labels(label_id)
 );
+
+CREATE TABLE IF NOT EXISTS status_transitions (
+    status_id BIGINT NOT NULL,
+    transition_status_id BIGINT NOT NULL,
+    PRIMARY KEY (status_id, transition_status_id),
+    FOREIGN KEY(status_id) REFERENCES statuses(status_id),
+    FOREIGN KEY(transition_status_id) REFERENCES statuses(status_id)
+);

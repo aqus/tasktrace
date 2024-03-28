@@ -21,27 +21,30 @@ public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "status_id")
-    private long id;
+    private Long id;
 
     private String name;
 
-//    @Fetch(FetchMode.SUBSELECT)
-//    @ManyToMany(targetEntity = Status.class)
-//    @JoinTable(name = "status_transitions",
-//            joinColumns = @JoinColumn(name = "status_id"),
-//            inverseJoinColumns = @JoinColumn(name = "status_id"))
-//    private List<Status> allowedTransitions;
+    @Fetch(FetchMode.SUBSELECT)
+    @ManyToMany(targetEntity = Status.class)
+    @JoinTable(name = "status_transitions",
+            joinColumns = @JoinColumn(name = "status_id"),
+            inverseJoinColumns = @JoinColumn(name = "transition_status_id"))
+    private List<Status> transitions;
 
-    public Status(long id, String name) {
+    public Status(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public long getId() {
+    public Status() {
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

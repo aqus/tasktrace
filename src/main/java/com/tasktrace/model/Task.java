@@ -66,6 +66,9 @@ public class Task {
         this.createTime = createTime;
     }
 
+    public Task() {
+    }
+
     public long getId() {
         return id;
     }

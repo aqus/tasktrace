@@ -14,20 +14,23 @@ public class Priority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "priority_id")
-    private long id;
+    private Long id;
 
     private String name;
 
-    public Priority(long id, String name) {
+    public Priority(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public long getId() {
+    public Priority() {
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
