@@ -25,13 +25,6 @@ public class Status {
 
     private String name;
 
-    @Fetch(FetchMode.SUBSELECT)
-    @ManyToMany(targetEntity = Status.class)
-    @JoinTable(name = "status_transitions",
-            joinColumns = @JoinColumn(name = "status_id"),
-            inverseJoinColumns = @JoinColumn(name = "transition_status_id"))
-    private List<Status> transitions;
-
     public Status(Long id, String name) {
         this.id = id;
         this.name = name;

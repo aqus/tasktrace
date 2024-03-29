@@ -10,6 +10,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedAttributeNode;
+import jakarta.persistence.NamedEntityGraph;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -18,6 +20,13 @@ import java.util.List;
 
 @Entity
 @Table(name = "tasks")
+@NamedEntityGraph(
+        name = "priority-status-entity-graph",
+        attributeNodes = {
+                @NamedAttributeNode("priority"),
+                @NamedAttributeNode("status")
+        }
+)
 public class Task {
 
     @Id
@@ -50,11 +59,18 @@ public class Task {
     @JoinColumn(name = "status_id")
     private Status status;
 
-    @Column(name = "create_time")
+    @Fetch(FetchMode.SUBSELECT)
+    @ManyToMany(targetEntity = Status.class)
+    @JoinTable(name = "status_transitions",
+            joinColumns = @JoinColumn(name = "status_id"),
+            inverseJoinColumns = @JoinColumn(name = "transition_status_id"))
+    private List<Status> transitions;
+
+    @Column(name = "create_time", nullable = false)
     private long createTime;
 
-    public Task(long id, String title, long reporterId, long performerId, String text, Priority priority, List<Label> labels,
-                Status status, long createTime) {
+    public Task(long id, String title, long reporterId, long performerId, String text, Priority priority,
+                List<Label> labels, Status status, List<Status> transitions, long createTime) {
         this.id = id;
         this.title = title;
         this.reporterId = reporterId;
@@ -63,6 +79,7 @@ public class Task {
         this.priority = priority;
         this.labels = labels;
         this.status = status;
+        this.transitions = transitions;
         this.createTime = createTime;
     }
 
@@ -139,5 +156,13 @@ public class Task {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public List<Status> getTransitions() {
+        return transitions;
+    }
+
+    public void setTransitions(List<Status> transitions) {
+        this.transitions = transitions;
     }
 }

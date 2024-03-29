@@ -5,6 +5,7 @@ import com.tasktrace.mapper.PriorityMapper;
 import com.tasktrace.model.Priority;
 import com.tasktrace.repository.PriorityRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ public class PriorityServiceImpl implements PriorityService {
         this.priorityRepository = priorityRepository;
     }
 
+    @Transactional
     @Override
     public PriorityDto create(String name) {
         return PriorityMapper.toPriorityDto(priorityRepository.save(new Priority(null, name)));
