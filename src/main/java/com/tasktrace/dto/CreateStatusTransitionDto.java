@@ -1,7 +1,5 @@
 package com.tasktrace.dto;
 
-import jakarta.validation.constraints.NotBlank;
-
 public class CreateStatusTransitionDto {
 
     private Long statusId;
