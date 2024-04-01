@@ -1,6 +1,9 @@
+server:
+  port: 8090
+
 spring:
   application:
-    name: "tasktrace"
+    name: tasktrace
 
   datasource:
     url: jdbc:postgresql://localhost:5432/tasktrace
@@ -21,6 +24,12 @@ spring:
       hibernate:
         format_sql: true
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8180/realms/tasktrace/protocol/openid-connect/certs
+
 management:
   endpoints:
     web:
@@ -34,16 +43,16 @@ logging:
   file:
     name: ./logs/tasktrace.log
 
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://localhost:8001/eureka
-#    register-with-eureka: true
-#    fetch-registry: true
-#  instance:
-#    leaseRenewalIntervalInSeconds: 30
-#    leaseExpirationDurationInSeconds: 90
-#    instance-id: ${spring.application.name}:${server.port}
-#    prefer-ip-address: true
-#  server:
-#    eviction-interval-timer-in-ms: 15000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    leaseRenewalIntervalInSeconds: 30
+    leaseExpirationDurationInSeconds: 90
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+  server:
+    eviction-interval-timer-in-ms: 15000
