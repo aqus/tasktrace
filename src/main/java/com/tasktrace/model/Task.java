@@ -36,11 +36,9 @@ public class Task {
 
     private String title;
 
-    @Column(name = "reporter_id", nullable = false)
-    private String reporterId;
+    private String reporter;
 
-    @Column(name = "performer_id", nullable = false)
-    private String performerId;
+    private String performer;
 
     private String text;
 
@@ -69,17 +67,16 @@ public class Task {
     @Column(name = "create_time", nullable = false)
     private long createTime;
 
-    public Task(long id, String title, String reporterId, String performerId, String text, Priority priority,
-                List<Label> labels, Status status, List<Status> transitions, long createTime) {
+    public Task(long id, String title, String reporter, String performer, String text, Priority priority,
+                List<Label> labels, Status status, long createTime) {
         this.id = id;
         this.title = title;
-        this.reporterId = reporterId;
-        this.performerId = performerId;
+        this.reporter = reporter;
+        this.performer = performer;
         this.text = text;
         this.priority = priority;
         this.labels = labels;
         this.status = status;
-        this.transitions = transitions;
         this.createTime = createTime;
     }
 
@@ -102,20 +99,20 @@ public class Task {
         this.title = title;
     }
 
-    public String getReporterId() {
-        return reporterId;
+    public String getReporter() {
+        return reporter;
     }
 
-    public void setReporterId(String reporterId) {
-        this.reporterId = reporterId;
+    public void setReporter(String reporter) {
+        this.reporter = reporter;
     }
 
-    public String getPerformerId() {
-        return performerId;
+    public String getPerformer() {
+        return performer;
     }
 
-    public void setPerformerId(String performerId) {
-        this.performerId = performerId;
+    public void setPerformer(String performer) {
+        this.performer = performer;
     }
 
     public Priority getPriority() {

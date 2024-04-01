@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS attachments (
 CREATE TABLE IF NOT EXISTS tasks (
     task_id SERIAL NOT NULL PRIMARY KEY,
     title VARCHAR(2000) NOT NULL,
-    reporter_id VARCHAR(40) NOT NULL,
-    performer_id VARCHAR(40) NOT NULL,
+    reporter VARCHAR(40) NOT NULL,
+    performer VARCHAR(40) NOT NULL,
     text TEXT,
     priority_id BIGINT NOT NULL,
     status_id BIGINT NOT NULL,
