@@ -1,7 +1,6 @@
 package com.tasktrace.service;
 
 import com.tasktrace.dto.CreateAttachmentDto;
-import com.tasktrace.dto.TaskDto;
 import com.tasktrace.exception.EntityNotFoundException;
 import com.tasktrace.feign.TasktraceStorage;
 import com.tasktrace.model.Attachment;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
