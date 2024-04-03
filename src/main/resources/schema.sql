@@ -13,11 +13,6 @@ CREATE TABLE IF NOT EXISTS labels (
     name VARCHAR(2000) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS attachments (
-    attachment_id SERIAL NOT NULL PRIMARY KEY,
-    name VARCHAR(2000) NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS tasks (
     task_id SERIAL NOT NULL PRIMARY KEY,
     title VARCHAR(2000) NOT NULL,
@@ -29,6 +24,14 @@ CREATE TABLE IF NOT EXISTS tasks (
     create_time BIGINT NOT NULL,
     FOREIGN KEY(priority_id) REFERENCES priorities(priority_id),
     FOREIGN KEY(status_id) REFERENCES statuses(status_id)
+);
+
+CREATE TABLE IF NOT EXISTS attachments (
+    attachment_id SERIAL NOT NULL PRIMARY KEY,
+    name VARCHAR(2000) NOT NULL,
+    file_id VARCHAR(100) NOT NULL,
+    task_id BIGINT NOT NULL,
+    FOREIGN KEY(task_id) REFERENCES tasks(task_id)
 );
 
 CREATE TABLE IF NOT EXISTS tasks_labels (

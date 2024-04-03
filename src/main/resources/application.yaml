@@ -5,6 +5,10 @@ spring:
   application:
     name: tasktrace
 
+  servlet:
+    multipart:
+      max-file-size: 100MB
+
   datasource:
     url: jdbc:postgresql://localhost:5432/tasktrace
     username: tasktrace

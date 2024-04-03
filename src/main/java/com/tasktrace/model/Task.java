@@ -1,5 +1,6 @@
 package com.tasktrace.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,6 +13,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedAttributeNode;
 import jakarta.persistence.NamedEntityGraph;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -63,6 +65,9 @@ public class Task {
             joinColumns = @JoinColumn(name = "status_id"),
             inverseJoinColumns = @JoinColumn(name = "transition_status_id"))
     private List<Status> transitions;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "task", cascade = CascadeType.ALL)
+    private List<Attachment> attachments;
 
     @Column(name = "create_time", nullable = false)
     private long createTime;
@@ -161,5 +166,13 @@ public class Task {
 
     public void setTransitions(List<Status> transitions) {
         this.transitions = transitions;
+    }
+
+    public List<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<Attachment> attachments) {
+        this.attachments = attachments;
     }
 }

@@ -23,10 +23,13 @@ public class TaskDto {
 
     private List<StatusDto> transitions;
 
+    private List<AttachmentDto> attachments;
+
     private long createTime;
 
     public TaskDto(long id, String title, String reporter, String performer, String text, PriorityDto priority,
-                   List<LabelDto> labels, StatusDto status, List<StatusDto> transitions, long createTime) {
+                   List<LabelDto> labels, StatusDto status, List<StatusDto> transitions,
+                   List<AttachmentDto> attachments, long createTime) {
         this.id = id;
         this.title = title;
         this.reporter = reporter;
@@ -36,6 +39,7 @@ public class TaskDto {
         this.labels = labels;
         this.status = status;
         this.transitions = transitions;
+        this.attachments = attachments;
         this.createTime = createTime;
     }
 
@@ -114,6 +118,14 @@ public class TaskDto {
         this.transitions = transitions;
     }
 
+    public List<AttachmentDto> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<AttachmentDto> attachments) {
+        this.attachments = attachments;
+    }
+
     public long getCreateTime() {
         return createTime;
     }
@@ -135,12 +147,13 @@ public class TaskDto {
                 && Objects.equals(reporter, taskDto.reporter) && Objects.equals(performer, taskDto.performer)
                 && Objects.equals(text, taskDto.text) && Objects.equals(priority, taskDto.priority)
                 && Objects.equals(labels, taskDto.labels) && Objects.equals(status, taskDto.status)
-                && Objects.equals(transitions, taskDto.transitions);
+                && Objects.equals(transitions, taskDto.transitions) && Objects.equals(attachments, taskDto.attachments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, reporter, performer, text, priority, labels, status, transitions, createTime);
+        return Objects.hash(id, title, reporter, performer, text, priority, labels, status, transitions, attachments,
+                createTime);
     }
 
     @Override
@@ -155,6 +168,7 @@ public class TaskDto {
                 ", labels=" + labels +
                 ", status=" + status +
                 ", transitions=" + transitions +
+                ", attachments=" + attachments +
                 ", createTime=" + createTime +
                 '}';
     }
