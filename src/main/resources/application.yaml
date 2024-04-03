@@ -1,0 +1,62 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: tasktrace
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tasktrace
+    username: tasktrace
+    password: tasktrace
+  sql:
+    init:
+      mode: always
+#      data-locations: classpath:data.sql
+      schema-locations: classpath:schema.sql
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+    properties:
+      hibernate:
+        format_sql: true
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8180/realms/tasktrace/protocol/openid-connect/certs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "metrics,health,logfile"
+  health:
+    defaults:
+      enabled: true
+
+logging:
+  file:
+    name: ./logs/tasktrace.log
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    leaseRenewalIntervalInSeconds: 30
+    leaseExpirationDurationInSeconds: 90
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+  server:
+    eviction-interval-timer-in-ms: 15000
