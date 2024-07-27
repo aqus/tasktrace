@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.UUID;
 
 @FeignClient("tasktrace-storage")
-public interface TasktraceStorage {
+public interface TasktraceStorageService {
 
     @PostMapping(value = "api/v1/file", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     ResponseEntity<UUID> save(@RequestPart("file") MultipartFile file);

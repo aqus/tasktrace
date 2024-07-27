@@ -2,7 +2,7 @@ package com.tasktrace.service;
 
 import com.tasktrace.dto.CreateAttachmentDto;
 import com.tasktrace.exception.EntityNotFoundException;
-import com.tasktrace.feign.TasktraceStorage;
+import com.tasktrace.feign.TasktraceStorageService;
 import com.tasktrace.model.Attachment;
 import com.tasktrace.model.Task;
 import com.tasktrace.repository.AttachmentRepository;
@@ -21,18 +21,18 @@ public class AttachmentServiceImpl implements AttachmentService {
 
     private final TaskRepository taskRepository;
 
-    private final TasktraceStorage tasktraceStorage;
+    private final TasktraceStorageService tasktraceStorageService;
 
     public AttachmentServiceImpl(AttachmentRepository attachmentRepository, TaskRepository taskRepository,
-                                 TasktraceStorage tasktraceStorage) {
+                                 TasktraceStorageService tasktraceStorageService) {
         this.attachmentRepository = attachmentRepository;
         this.taskRepository = taskRepository;
-        this.tasktraceStorage = tasktraceStorage;
+        this.tasktraceStorageService = tasktraceStorageService;
     }
 
     @Override
     public String createAttachment(CreateAttachmentDto createAttachmentDto) {
-        ResponseEntity<UUID> file = tasktraceStorage.save(createAttachmentDto.getFile());
+        ResponseEntity<UUID> file = tasktraceStorageService.save(createAttachmentDto.getFile());
         UUID fileId = file.getBody();
 
         if (fileId == null) {
