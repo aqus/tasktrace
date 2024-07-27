@@ -4,7 +4,6 @@ package com.tasktrace.controller;
 import com.tasktrace.dto.CreateTaskDto;
 import com.tasktrace.dto.TaskDto;
 import com.tasktrace.dto.UpdateTaskDto;
-import com.tasktrace.feign.TasktraceUsers;
 import com.tasktrace.service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,11 +20,8 @@ public class TaskController {
 
     private final TaskService taskService;
 
-    private final TasktraceUsers tasktraceUsers;
-
-    public TaskController(TaskService taskService, TasktraceUsers tasktraceUsers) {
+    public TaskController(TaskService taskService) {
         this.taskService = taskService;
-        this.tasktraceUsers = tasktraceUsers;
     }
 
     @GetMapping("api/v1/tasks")
