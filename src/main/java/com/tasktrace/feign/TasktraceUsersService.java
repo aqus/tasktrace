@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @FeignClient("tasktrace-users")
-public interface TasktraceUsers {
+public interface TasktraceUsersService {
 
     @GetMapping("api/v1/users/{username}")
     List<UserRepresentation> searchByUsername(@PathVariable("username") String username);

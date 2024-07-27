@@ -4,7 +4,7 @@ import com.tasktrace.dto.CreateTaskDto;
 import com.tasktrace.dto.TaskDto;
 import com.tasktrace.dto.UpdateTaskDto;
 import com.tasktrace.exception.EntityNotFoundException;
-import com.tasktrace.feign.TasktraceUsers;
+import com.tasktrace.feign.TasktraceUsersService;
 import com.tasktrace.mapper.TaskMapper;
 import com.tasktrace.model.Label;
 import com.tasktrace.model.Priority;
@@ -35,16 +35,16 @@ public class TaskServiceImpl implements TaskService {
 
     private final StatusRepository statusRepository;
 
-    private final TasktraceUsers tasktraceUsers;
+    private final TasktraceUsersService tasktraceUsersService;
 
     public TaskServiceImpl(TaskRepository taskRepository, PriorityRepository priorityRepository,
                            LabelRepository labelRepository, StatusRepository statusRepository,
-                           TasktraceUsers tasktraceUsers) {
+                           TasktraceUsersService tasktraceUsersService) {
         this.taskRepository = taskRepository;
         this.priorityRepository = priorityRepository;
         this.labelRepository = labelRepository;
         this.statusRepository = statusRepository;
-        this.tasktraceUsers = tasktraceUsers;
+        this.tasktraceUsersService = tasktraceUsersService;
     }
 
     @Transactional(readOnly = true)
@@ -91,8 +91,8 @@ public class TaskServiceImpl implements TaskService {
 
     private TaskDto save(long id, String title, String reporter, String performer, String text, long priorityId,
                          List<Long> labelIds, long statusId) {
-        List<UserRepresentation> reporterUR = tasktraceUsers.searchByUsername(reporter);
-        List<UserRepresentation> performerUR = tasktraceUsers.searchByUsername(performer);
+        List<UserRepresentation> reporterUR = tasktraceUsersService.searchByUsername(reporter);
+        List<UserRepresentation> performerUR = tasktraceUsersService.searchByUsername(performer);
 
         if (reporterUR.isEmpty()) {
             throw new EntityNotFoundException("Reporter user with name %s not found".formatted(reporter));
