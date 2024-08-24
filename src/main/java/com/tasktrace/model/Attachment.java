@@ -25,7 +25,7 @@ public class Attachment {
     @Column(name = "file_id")
     private String fileId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "task_id")
     private Task task;
 
