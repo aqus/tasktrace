@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.0//EN"
+        "https://checkstyle.org/dtds/suppressions_1_0.dtd">
+
+<suppressions>
+    <suppress checks="ParameterNumber"
+              files="CreateTaskDto.java"
+              lines="27-36"/>
+    <suppress checks="ParameterNumber"
+              files="TaskDto.java"
+              lines="30-44"/>
+    <suppress checks="ParameterNumber"
+              files="UpdateTaskDto.java"
+              lines="29-39"/>
+    <suppress checks="ParameterNumber"
+              files="Task.java"
+              lines="75-86"/>
+    <suppress checks="ParameterNumber"
+              files="TaskServiceImpl.java"
+              lines="92-113"/>
+</suppressions>
