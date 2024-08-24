@@ -1,6 +1,6 @@
 # About the Tasktrace application
 Task management system. The application allows to create tasks, assign them to users and track their progress.
-It is cloud native and uses microservices architecture.
+It is cloud native application and uses microservices architecture.
 
 ## Features
 - Create new task
