@@ -21,6 +21,9 @@
 		<checkstyle.config.url>
 			https://raw.githubusercontent.com/OtusTeam/Spring/master/checkstyle.xml
 		</checkstyle.config.url>
+		<checkstyle.suppressions.file>
+			checkstyle-suppressions.xml
+		</checkstyle.suppressions.file>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -107,6 +110,7 @@
 				</dependencies>
 				<configuration>
 					<configLocation>${checkstyle.config.url}</configLocation>
+					<suppressionsLocation>${checkstyle.suppressions.file}</suppressionsLocation>
 				</configuration>
 				<executions>
 					<execution>
