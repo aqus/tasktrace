@@ -1,5 +1,6 @@
 # About the Tasktrace application
 Task management system. The application allows to create tasks, assign them to users and track their progress.
+It is cloud native and uses microservices architecture.
 
 ## Features
 - Create new task
@@ -24,6 +25,8 @@ Task management system. The application allows to create tasks, assign them to u
 
 ## Technologies used
 - Spring Boot
+- Spring MVC
+- Spring Actuator
 - Spring Data JPA
 - Spring Security
 - Eureka Discovery
@@ -31,3 +34,4 @@ Task management system. The application allows to create tasks, assign them to u
 - Hibernate
 - MinIO Client
 - Keycloak
+- Docker (Multi-stage docker build)
