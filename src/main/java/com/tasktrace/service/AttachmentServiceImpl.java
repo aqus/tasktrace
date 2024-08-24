@@ -9,6 +9,7 @@ import com.tasktrace.repository.AttachmentRepository;
 import com.tasktrace.repository.TaskRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public class AttachmentServiceImpl implements AttachmentService {
         this.tasktraceStorageService = tasktraceStorageService;
     }
 
+    @Transactional
     @Override
     public String createAttachment(CreateAttachmentDto createAttachmentDto) {
         ResponseEntity<UUID> file = tasktraceStorageService.save(createAttachmentDto.getFile());
