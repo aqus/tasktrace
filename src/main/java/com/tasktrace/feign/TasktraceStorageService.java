@@ -17,6 +17,6 @@ public interface TasktraceStorageService {
     @PostMapping(value = "api/v1/file", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     ResponseEntity<UUID> save(@RequestPart("file") MultipartFile file);
 
-    @GetMapping("file/{uuid}")
+    @GetMapping("api/v1/file/{uuid}")
     ResponseEntity<byte[]> readFile(@PathVariable UUID uuid);
 }
