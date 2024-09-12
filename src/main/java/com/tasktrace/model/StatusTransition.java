@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "status_transitions")
@@ -14,32 +13,30 @@ public class StatusTransition {
 
     @Id
     @Column(name = "status_id")
-    private Status status;
+    private Long statusId;
 
     @Id
     @Column(name = "transition_status_id")
-    private Status transitionStatus;
+    private Long transitionStatusId;
 
-    public StatusTransition(Status status, Status transitionStatus) {
-        this.status = status;
-        this.transitionStatus = transitionStatus;
+    public StatusTransition(Long statusId, Long transitionStatusId) {
+        this.statusId = statusId;
+        this.transitionStatusId = transitionStatusId;
     }
 
-    @NotNull
-    public Status getStatus() {
-        return status;
+    public Long getStatusId() {
+        return statusId;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setStatusId(Long statusId) {
+        this.statusId = statusId;
     }
 
-    @NotNull
-    public Status getTransitionStatus() {
-        return transitionStatus;
+    public Long getTransitionStatusId() {
+        return transitionStatusId;
     }
 
-    public void setTransitionStatus(Status transitionStatus) {
-        this.transitionStatus = transitionStatus;
+    public void setTransitionStatusId(Long transitionStatusId) {
+        this.transitionStatusId = transitionStatusId;
     }
 }

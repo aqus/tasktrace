@@ -1,0 +1,16 @@
+spring:
+#  datasource:
+#    url: jdbc:h2:mem:testdb
+#    username: sa
+#    password:
+#    driverClassName: org.h2.Driver
+#  jpa:
+#    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8180/realms/tasktrace/protocol/openid-connect/certs
